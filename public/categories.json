@@ -1,6 +1,5 @@
 [
   {
-    "_id": 1,
     "brand": "Apple",
     "img":"https://i.ibb.co/y80hdvk/Apple-Mac-Book-Air-core-i5-2014-4-256-GB.jpg",
     "products": [
@@ -29,7 +28,6 @@
     ]
   },
   {
-    "_id": 2,
     "brand": "Dell",
     "img":"https://i.ibb.co/wCMZCn5/Dell-Inspiron-3501-i5-11th-Gen-MX330-Black-Laptop.jpg",
     "products": [
@@ -58,7 +56,6 @@
     ]
   },
   {
-    "_id": 3,
     "brand": "Hp",
     "img":"https://i.ibb.co/pzckm2z/HP-Envy-13-M-BD1033-DX-i7-2.jpg",
     "products": [

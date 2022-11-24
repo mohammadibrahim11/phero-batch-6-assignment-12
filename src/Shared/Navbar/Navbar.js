@@ -28,12 +28,12 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to='/'>
+                <Link className="nav-link" to='/blog'>
                 Blog
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link ">Shop</Link>
+                <Link className="nav-link " to="/signin">signin</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">
