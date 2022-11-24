@@ -13,7 +13,7 @@ const Footer = () => {
             <div className="col-xl-6 col-lg-4 col-sm-12">
                <div className="f-about">
                   <div className="footer-logo">
-                     <Link to="javascript:void(0)">
+                     <Link to="/">
                      <img src="https://cdn.ayroui.com/1.0/images/footer/logo.svg" alt="Logo" />
                      </Link >
                   </div>
@@ -26,7 +26,7 @@ const Footer = () => {
                   <h5 className="download-title">Download Our App Now!</h5>
                   <ul>
                      <li>
-                        <Link to="javascript:void(0)">
+                        <Link to="/">
                         <img
                            src="https://cdn.ayroui.com/1.0/images/footer/Link pp-store.svg"
                            alt="app"
@@ -34,7 +34,7 @@ const Footer = () => {
                         </Link >
                      </li>
                      <li>
-                        <Link to="javascript:void(0)">
+                        <Link to="/">
                         <img
                            src="https://cdn.ayroui.com/1.0/images/footer/play-store.svg"
                            alt="play"
@@ -48,10 +48,10 @@ const Footer = () => {
                <div className="footer-link">
                   <h6 className="footer-title">Company</h6>
                   <ul>
-                     <li><Link to="javascript:void(0)">About</Link ></li>
-                     <li><Link to="javascript:void(0)">Contact</Link ></li>
-                     <li><Link to="javascript:void(0)">Marketing</Link ></li>
-                     <li><Link to="javascript:void(0)">Awards</Link ></li>
+                     <li><Link to="/">About</Link ></li>
+                     <li><Link to="/">Contact</Link ></li>
+                     <li><Link to="/">Marketing</Link ></li>
+                     <li><Link to="/">Awards</Link ></li>
                   </ul>
                </div>
                {/* <!-- footer link --> */}
@@ -60,10 +60,10 @@ const Footer = () => {
                <div className="footer-link">
                   <h6 className="footer-title">Services</h6>
                   <ul>
-                     <li><Link to="javascript:void(0)">Products</Link ></li>
-                     <li><Link to="javascript:void(0)">Business</Link ></li>
-                     <li><Link to="javascript:void(0)">Developer</Link ></li>
-                     <li><Link to="javascript:void(0)">Insights</Link ></li>
+                     <li><Link to="/">Products</Link ></li>
+                     <li><Link to="/">Business</Link ></li>
+                     <li><Link to="/">Developer</Link ></li>
+                     <li><Link to="/">Insights</Link ></li>
                   </ul>
                </div>
                {/* <!-- footer link --> */}
@@ -105,22 +105,22 @@ const Footer = () => {
                   <p className="text">Copyright © 2024 AyroUI. All Rights Reserved</p>
                   <ul className="social">
                      <li>
-                        <Link to="javascript:void(0)">
+                        <Link to="/">
                         <i className="lni lni-facebook-filled"></i>
                         </Link >
                      </li>
                      <li>
-                        <Link to="javascript:void(0)">
+                        <Link to="/">
                         <i className="lni lni-twitter-original"></i>
                         </Link >
                      </li>
                      <li>
-                        <Link to="javascript:void(0)">
+                        <Link to="/">
                         <i className="lni lni-instagram-filled"></i>
                         </Link >
                      </li>
                      <li>
-                        <Link to="javascript:void(0)"
+                        <Link to="/"
                            ><i className="lni lni-linkedin-original"></i
                            ></Link >
                      </li>
