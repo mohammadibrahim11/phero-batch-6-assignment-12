@@ -1,13 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Authcontext } from "../../Context/AuthProvider";
 
 const Navbar = () => {
+  const { user, LogOut } = useContext(Authcontext);
+
+  const handleLogOut = () => {
+    LogOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   return (
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
           <Link className="navbar-brand" to="/">
-            re Commerce
+            reCommerce
           </Link>
           <button
             className="navbar-toggler"
@@ -21,32 +29,53 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
+            <ul className="navbar-nav  m-auto mb-2 mb-lg-0">
               <li className="nav-item ">
-                <Link className="nav-link active " aria-current="page" to="/home">
+                <Link
+                  className="nav-link active"
+                  aria-current="page"
+                  to="/home"
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to='/blog'>
-                Blog
+                <Link className="nav-link" to="/blog">
+                  Blog
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link  " to="/register">Register</Link>
-              </li>
+
+              {user ? (
+                <>
+                  <li className="nav-item">
+                    <Link to='dashboard' className=" nav-link">
+                    Dashboard
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogOut} className="btn btn-primary ">
+                      sign out
+                    </button>
+                  </li>
+                 
+                </>
+              ) : (
+                <div className="d-flex flex-row justify-content-center ">
+                  <li>
+                    {" "}
+                    <Link className="btn btn-primary me-3" to="/login">
+                      Login
+                    </Link>{" "}
+                  </li>
+                  <li>
+                    {" "}
+                    <Link className="btn btn-primary" to="/register">
+                      Register
+                    </Link>{" "}
+                  </li>
+                </div>
+              )}
             </ul>
-            {/* <form className="d-flex" role="search">
-              <input
-                className="form-control me-2"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-              <button className="btn btn-outline-success" type="submit">
-                Search
-              </button>
-            </form> */}
           </div>
         </div>
       </nav>

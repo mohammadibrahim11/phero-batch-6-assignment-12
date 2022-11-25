@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+// import BookNowModal from "../BookNowModal/BookNowModal";
 import "./SingleCategory.css";
 
-const SingleCategory = ({ product }) => {
-  // console.log(product);
+const SingleCategory = ({ product,setBookProduct }) => {
+
+  console.log(product,setBookProduct);
   const {
     product_name,
     sellers_name,
@@ -43,6 +45,7 @@ const SingleCategory = ({ product }) => {
               {/* <!-- Button trigger modal --> */}
 
               <button
+              onClick={()=>setBookProduct(product)}
                 type="button"
                 class="btn btn-primary"
                 data-bs-toggle="modal"
@@ -52,9 +55,14 @@ const SingleCategory = ({ product }) => {
                 book now
               </button>
             </div>
+
+            
+    
           </div>
         </div>
       </div>
+
+     
     </div>
   );
 };

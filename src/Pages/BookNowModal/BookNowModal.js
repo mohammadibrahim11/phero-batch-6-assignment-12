@@ -1,57 +1,133 @@
-import React from "react";
+import React, { useContext } from "react";
+import toast from "react-hot-toast";
+import { Authcontext } from "../../Context/AuthProvider";
 
-const BookNowModal = ({product}) => {
-    // console.log(product);
-    const {product_name}=product;
+const BookNowModal = ({ bookProduct, setBookProduct }) => {
+  console.log(bookProduct);
+  const { user } = useContext(Authcontext);
+  console.log(user);
+  const { product_name, original_price, resale_Price } = bookProduct;
+
+  const handleBooking = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const phone = form.phone.value;
+    const userLocation = form.location.value;
+    const itemName = form.itemname.value;
+    const itemPrice = form.itemprice.value;
+    console.log(name, email, phone, userLocation, itemName, itemPrice);
+
+    const booking = {
+      name,
+      email,
+      phone,
+      userLocation,
+      itemPrice,
+      itemName,
+    };
+
+    fetch("http://localhost:5000/bookings", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(booking),
+    })
+    .then( res => res.json())
+    .then(data => {
+      console.log(data);
+      if(data.acknowledge){
+        setBookProduct('');
+        toast("product book  successfully");
+        
+      }
+      else{
+            toast.error(data.message)
+      }
+    })
+  
+  };
+
   return (
     <div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 {product_name}
+              </h1>
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
+                {original_price}
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <form>
-                <div class="mb-3">
-                  <label for="recipient-name" class="col-form-label">
-                    Recipient:
-                  </label>
-                  <input type="text" class="form-control" id="recipient-name" />
+            <div className="modal-body">
+              <form onSubmit={handleBooking} className="">
+                <div className="mb-3 ">
+                  <input
+                    type="text"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="name"
+                    defaultValue={user && user.displayName}
+                    placeholder="username"
+                  />
+
+                  <input
+                    type="email"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="email"
+                    defaultValue= {  user && user.email}
+                    placeholder="useremail"
+                  />
+
+                  <input
+                    type="text"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="itemname"
+                    defaultValue={product_name}
+                    placeholder="itemname"
+                  />
+
+                  <input
+                    type="text"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="itemprice"
+                    defaultValue={resale_Price}
+                    placeholder="itemprice"
+                  />
+                  <input
+                    type="text"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="phone"
+                    placeholder="phone"
+                  />
+                  <input
+                    type="text"
+                    className="form-control mb-2 w-75 m-auto"
+                    id="location"
+                    placeholder="location"
+                  />
                 </div>
-                <div class="mb-3">
-                  <label for="message-text" class="col-form-label">
-                    Message:
-                  </label>
-                  <textarea class="form-control" id="message-text"></textarea>
-                </div>
+                <input
+                  className="btn btn-primary"
+                  type="submit"
+                  value="Submit"
+                />
               </form>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary">
-                Send message
-              </button>
             </div>
           </div>
         </div>
