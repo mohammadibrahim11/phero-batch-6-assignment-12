@@ -6,7 +6,7 @@ const Navbar = () => {
     <div className="container">
       <nav className="navbar navbar-expand-lg bg-light">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="#">
+          <Link className="navbar-brand" to="/">
             re Commerce
           </Link>
           <button
@@ -21,9 +21,9 @@ const Navbar = () => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0">
-              <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/home">
+            <ul className="navbar-nav  me-auto mb-2 mb-lg-0">
+              <li className="nav-item ">
+                <Link className="nav-link active " aria-current="page" to="/home">
                   Home
                 </Link>
               </li>
@@ -33,10 +33,10 @@ const Navbar = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link " to="/signin">signin</Link>
+                <Link className="nav-link  " to="/register">Register</Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
+            {/* <form className="d-flex" role="search">
               <input
                 className="form-control me-2"
                 type="search"
@@ -46,7 +46,7 @@ const Navbar = () => {
               <button className="btn btn-outline-success" type="submit">
                 Search
               </button>
-            </form>
+            </form> */}
           </div>
         </div>
       </nav>

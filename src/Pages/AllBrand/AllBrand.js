@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import Brand from '../Brand/Brand';
 
 const AllBrand = ({br}) => {
@@ -9,7 +9,9 @@ const AllBrand = ({br}) => {
         .then( res => res.json())
         .then( data => {
             setAllBrands(data)
-            console.log(data)})
+            // console.log(data)
+        }
+            )
     }, [])
     
     return (
@@ -19,7 +21,7 @@ const AllBrand = ({br}) => {
             </div>
          <div>
          {
-                allBrands.map( brand => <Brand brand={brand}></Brand>)
+                allBrands.map( brand => <Brand brand={brand} key={brand._id} ></Brand>)
             }
          </div>
         </div>

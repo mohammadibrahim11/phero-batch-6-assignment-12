@@ -2,8 +2,8 @@ import Root from "../Root/Root";
 import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../Pages/Home/Home";
+import Register from '../Pages/Register/Register'
 import Categories from "../Pages/Categories/Categories";
-import Signin from "../Pages/Signin/Signin";
 import Blog from "../Pages/Blog/Blog";
 import ErrorPage from "../ErrorPage/ErrorPage";
 
@@ -35,8 +35,8 @@ export const router = createBrowserRouter([
         }
       },
       {
-        path: "/signin",
-        element: <Signin></Signin>,
+        path: "/register",
+        element: <Register></Register> ,
         
         }
       ,

@@ -1,32 +1,40 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useLoaderData } from "react-router";
 import AllBrand from "../AllBrand/AllBrand";
-import Products from "../Home/Products/Products";
-// import { Link } from "react-router-dom";
-// import Brand from "../Brand/Brand";
+import BookNowModal from '../BookNowModal/BookNowModal'
 import SingleCategory from "../SingleCategory/SingleCategory";
+import './Categories.css'
 
 
 const Categories = () => {
-    // const [brands,setBrands] = useState([]);
+  // const [product,  setProduct] = useState(null);
   const categories = useLoaderData();
-  console.log(categories);
+  // console.log(categories);
   const { products}= categories;
+  // console.log(products);
 
  
 
   return (
 <div className="container">
-<div className="row">
-    <div className="col">
+<div className="category-container row m-auto">
+    <div className="col-2">
         
       <AllBrand></AllBrand>
            
        
     </div>
-    <div className="category-container">
-        {products.map( product => <SingleCategory product={product}></SingleCategory>)}
+    <div className="col-10">
+        {products.map( product => <SingleCategory product={product} 
+        key={product.id}
+        ></SingleCategory>)}
     </div>
+       
+       <div>
+        {
+          products.map( product => <BookNowModal product={product} key={product.id} ></BookNowModal>)
+        }
+       </div>
   </div>
 </div>
   );
