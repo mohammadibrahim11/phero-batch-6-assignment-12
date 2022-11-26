@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Authcontext } from "../../Context/AuthProvider";
+import { AuthContext } from "../../Context/AuthProvider";
+import useAdmin from "../../Hooks/useAdmin";
 
-const Navbar = () => {
-  const { user, LogOut } = useContext(Authcontext);
+const Navbar = (email) => {
+  const { user, LogOut } = useContext(AuthContext);
+  console.log(user)
+  const [isAdmin] = useAdmin(email);
 
   const handleLogOut = () => {
     LogOut()
@@ -44,25 +47,22 @@ const Navbar = () => {
                   Blog
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/admindashboard">
-                  AdminDashBoard
-                </Link>
-              </li>
 
               {user ? (
                 <>
-                  <li className="nav-item">
-                    <Link to='dashboard' className=" nav-link">
-                    Dashboard
-                    </Link>
-                  </li>
+                  {
+                    <li className="nav-item">
+                      <Link to="/dashboard" className=" nav-link">
+                        Dashboard
+                      </Link>
+                    </li>
+                  }
+
                   <li>
                     <button onClick={handleLogOut} className="btn btn-primary ">
                       sign out
                     </button>
                   </li>
-                 
                 </>
               ) : (
                 <div className="d-flex flex-row justify-content-center ">

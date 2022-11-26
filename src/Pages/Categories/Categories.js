@@ -7,9 +7,19 @@ import "./Categories.css";
 
 const Categories = () => {
   const [bookProduct, setBookProduct] = useState([]);
+  const [role, setRole]= useState([]);
   console.log(bookProduct);
   const categories = useLoaderData();
   const { products } = categories;
+
+  useEffect( ()=>{
+    fetch('http://localhost:5000/allBuyers')
+    .then(res => res.json())
+    .then(data => {
+      setRole(data)
+      console.log(data)
+    })
+  } ,[])
 
   return (
     <div className="container">
@@ -17,6 +27,7 @@ const Categories = () => {
         <div className="col-2">
           <AllBrand></AllBrand>
         </div>
+      
         <div className="col-10">
           {products.map((product) => (
             <SingleCategory
@@ -27,7 +38,8 @@ const Categories = () => {
           ))}
         </div>
         <div>
-      { bookProduct &&   <BookNowModal
+      { bookProduct &&  <BookNowModal
+       
             bookProduct={bookProduct}
             setBookProduct={setBookProduct}
           ></BookNowModal>}

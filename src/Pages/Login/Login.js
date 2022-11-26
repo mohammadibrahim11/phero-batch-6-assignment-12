@@ -1,21 +1,21 @@
 import React, { useContext, useState } from "react";
-import { useLocation, useNavigate } from "react-router";
+import {  useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 // import { useLocation, useNavigate } from "react-router";
-import { Authcontext } from "../../Context/AuthProvider";
-import useToken from "../../Hooks/useHooks";
+import { AuthContext } from "../../Context/AuthProvider";
+// import useToken from "../../Hooks/useHooks";
 
 const Login = () => {
   const [logInError, setLogInError] = useState();
-  const { LogIn,signInWithGoogle } = useContext(Authcontext);
+  const { LogIn,signInWithGoogle } = useContext(AuthContext);
   const [loginUserEmail, setLoginUserEmail] = useState('')
-  const [token] = useToken(loginUserEmail);
-  const location = useLocation();
+  // const [token] = useToken(loginUserEmail);
+  // const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state.from.pathname || '/';
-if (token) {
-  navigate( from, {replace: true})
-}
+  // const from = location.state.from.pathname || '/';
+// if (token) {
+//   navigate( from, {replace: true})
+// }
   const handleLogIn = (event) => {
     event.preventDefault();
     const form = event.target;

@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { Authcontext } from "../../Context/AuthProvider";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const BookNowModal = ({ bookProduct, setBookProduct }) => {
   console.log(bookProduct);
-  const { user } = useContext(Authcontext);
+
+  const { user } = useContext(AuthContext);
   console.log(user);
   const { product_name, original_price, resale_Price } = bookProduct;
 
@@ -35,19 +36,16 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
       },
       body: JSON.stringify(booking),
     })
-    .then( res => res.json())
-    .then(data => {
-      console.log(data);
-      if(data.acknowledge){
-        setBookProduct('');
-        toast("product book  successfully");
-        
-      }
-      else{
-            toast.error(data.message)
-      }
-    })
-  
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledge) {
+          toast("user created successfully");
+          setBookProduct("");
+        } else {
+          toast.error(data.message);
+        }
+      });
   };
 
   return (
@@ -82,7 +80,8 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
                     type="text"
                     className="form-control mb-2 w-75 m-auto"
                     id="name"
-                    defaultValue={user && user.name}
+                    defaultValue={user && user.displayName}
+                    readOnly
                     placeholder="username"
                   />
 
@@ -90,7 +89,8 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
                     type="email"
                     className="form-control mb-2 w-75 m-auto"
                     id="email"
-                    defaultValue= {  user && user.email}
+                    defaultValue={user && user.email}
+                    readOnly
                     placeholder="useremail"
                   />
 
@@ -99,6 +99,7 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
                     className="form-control mb-2 w-75 m-auto"
                     id="itemname"
                     defaultValue={product_name}
+                    readOnly
                     placeholder="itemname"
                   />
 
@@ -107,6 +108,7 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
                     className="form-control mb-2 w-75 m-auto"
                     id="itemprice"
                     defaultValue={resale_Price}
+                    readOnly
                     placeholder="itemprice"
                   />
                   <input

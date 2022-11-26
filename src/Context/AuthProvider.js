@@ -11,7 +11,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 
-export const Authcontext = createContext();
+export const AuthContext = createContext();
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
@@ -36,7 +36,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const updateUser = (userInfo) => {
-    return updateProfile(user, userInfo);
+    return updateProfile(auth.currentUser, userInfo);
   };
 
   const signInWithGoogle = () => {
@@ -44,7 +44,7 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, currentUser => {
       console.log("user observing",currentUser);
       setUser(currentUser);
       setLoading(false);
@@ -63,7 +63,7 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
   };
   return (
-    <Authcontext.Provider value={authInfo}>{children}</Authcontext.Provider>
+    <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );
 };
 

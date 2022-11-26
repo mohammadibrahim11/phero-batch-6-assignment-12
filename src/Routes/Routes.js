@@ -11,6 +11,8 @@ import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import DashboardLayout from "../Layout/Root/DashboardLayout/DashboardLayout";
 import AdminDashBoard from "../Pages/AdminDashBoard/AdminDashBoard";
+import MyOrders from "../Pages/MyOrders/MyOrders";
+import AddProducts from "../Pages/AddProducts/AddProducts";
 
 
 export const router = createBrowserRouter([
@@ -47,22 +49,41 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
-     
+      {
+        path: "/dashboard",
+        element:  <Dashboard></Dashboard>
+    
+     },
+      {
+        path: "/myorders",
+        element:  <MyOrders></MyOrders>
+    
+     },
+      {
+        path: "/addproducts",
+        element: <AddProducts></AddProducts>
+    
+     },
+      {
+        path: "/addproducts",
+        element: <AddProducts></AddProducts>
+    
+     },
     ],
   },
-  {
-    path: '/',
-    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    children: [
-      {
-        path:'/dashboard',
-        element:<Dashboard></Dashboard>
-      },
-      {
-        path:'/admindashboard',
-        element:<AdminDashBoard></AdminDashBoard>
-      },
-    ]
-   },
+  // {
+  //   path: '/dashboard',
+  //   element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+  //   children: [
+  //     {
+  //       path:'/dashboard',
+  //       element: <AdminDashBoard></AdminDashBoard>
+  //     },
+  //     // {
+  //     //   path:'/admindashboard',
+  //     //   element:<PrivateRoute><AdminDashBoard></AdminDashBoard></PrivateRoute>
+  //     // },
+  //   ]
+  //  },
 
 ]);

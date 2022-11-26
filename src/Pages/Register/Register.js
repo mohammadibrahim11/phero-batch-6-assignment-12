@@ -3,15 +3,16 @@ import toast from "react-hot-toast";
 import {  useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
-import { Authcontext } from "../../Context/AuthProvider";
+import { AuthContext } from "../../Context/AuthProvider";
 import useToken from "../../Hooks/useHooks";
 
 const Register = () => {
-  const { createUser, updateUser, signInWithGoogle } = useContext(Authcontext);
+  const { createUser, updateUser, signInWithGoogle } = useContext(AuthContext);
   const [registerError, setRegisterError] = useState("");
   const navigate = useNavigate();
   const [ createdUserEmail, setCreatedUserEmail] = useState('');
   const [token] = useToken(createdUserEmail);
+  console.log(token);
  
  if(token){
   navigate('/')
@@ -23,14 +24,14 @@ const Register = () => {
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+    const accountRole = form.role.value;
 
     createUser(email, password)
       .then((result) => {
         const user = result.user;
         console.log(user);
         toast("user created successfully");
-        handleUserProfile(name,email);
+        handleUserProfile(name,email,accountRole);
       })
       .catch((error) => {
         setRegisterError(error.message);
@@ -38,31 +39,33 @@ const Register = () => {
       });
   };
 
-  const handleUserProfile = (name,email) => {
+  const handleUserProfile = (name,email,accountRole) => {
     const profile = {
-       name,
-      
+       displayName: name
     };
     updateUser(profile)
       .then(() => {
-        saveUser(name,email);
+        
       })
       .catch((error) => console.log(error));
+
+      saveUser(name,email, accountRole);
   };
 
-  const saveUser = (name, email) => {
-    const user = { name, email }                
+  const saveUser = (name, email, role) => {
+    const users = { name, email, role };
+    console.log(users)              
     fetch("http://localhost:5000/users", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(user),
+      body: JSON.stringify(users),
     })
       .then((res) => res.json())
       .then((data) => {
         // getUserToken(email);
-       setCreatedUserEmail(email)
+       setCreatedUserEmail(email.email)
       });
   };
 
@@ -82,7 +85,8 @@ const Register = () => {
     signInWithGoogle()
       .then((result) => {
         const user = result.user;
-        // navigate('/courses')
+        toast.success('register successful')
+        navigate('/')
         console.log(user);
       })
       .catch((error) => {
@@ -133,6 +137,22 @@ const Register = () => {
             className="form-control p-1"
             id="exampleInputPassword1"
           />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="exampleInputPassword1" className="form-label fs-6">
+            account role
+          </label>
+
+          <select name="role" id="role">
+            <option defaultValue>buyer</option>
+            <option>seller</option>
+          </select>
+          {/* <input
+            type="option"
+            name="account-role"
+            className="form-control p-1"
+            id="exampleInputPassword1"
+          /> */}
         </div>
         <div>
           {registerError && (
