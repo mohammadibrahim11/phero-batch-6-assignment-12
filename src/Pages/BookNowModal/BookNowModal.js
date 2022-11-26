@@ -82,7 +82,7 @@ const BookNowModal = ({ bookProduct, setBookProduct }) => {
                     type="text"
                     className="form-control mb-2 w-75 m-auto"
                     id="name"
-                    defaultValue={user && user.displayName}
+                    defaultValue={user && user.name}
                     placeholder="username"
                   />
 

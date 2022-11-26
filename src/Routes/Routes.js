@@ -10,6 +10,7 @@ import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Dashboard from "../Pages/Dashboard/Dashboard";
 import DashboardLayout from "../Layout/Root/DashboardLayout/DashboardLayout";
+import AdminDashBoard from "../Pages/AdminDashBoard/AdminDashBoard";
 
 
 export const router = createBrowserRouter([
@@ -56,7 +57,11 @@ export const router = createBrowserRouter([
       {
         path:'/dashboard',
         element:<Dashboard></Dashboard>
-      }
+      },
+      {
+        path:'/admindashboard',
+        element:<AdminDashBoard></AdminDashBoard>
+      },
     ]
    },
 

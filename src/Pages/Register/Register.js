@@ -1,11 +1,21 @@
 import React, { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import {  useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 import { Authcontext } from "../../Context/AuthProvider";
+import useToken from "../../Hooks/useHooks";
 
 const Register = () => {
-  const { createUser, updateUser,signInWithGoogle } = useContext(Authcontext);
+  const { createUser, updateUser, signInWithGoogle } = useContext(Authcontext);
   const [registerError, setRegisterError] = useState("");
+  const navigate = useNavigate();
+  const [ createdUserEmail, setCreatedUserEmail] = useState('');
+  const [token] = useToken(createdUserEmail);
+ 
+ if(token){
+  navigate('/')
+ }
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -20,8 +30,7 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         toast("user created successfully");
-        handleUserProfile(name)
-    
+        handleUserProfile(name,email);
       })
       .catch((error) => {
         setRegisterError(error.message);
@@ -29,28 +38,58 @@ const Register = () => {
       });
   };
 
-  const handleUserProfile = (name)=> {
+  const handleUserProfile = (name,email) => {
     const profile = {
-      name
-    }
+       name,
+      
+    };
     updateUser(profile)
-    .then(() => {})
-    .catch((error) => console.log(error));
-  }
+      .then(() => {
+        saveUser(name,email);
+      })
+      .catch((error) => console.log(error));
+  };
 
-  const handleGoogleSignIn =()=> {
-    signInWithGoogle()
-    .then((result) => {
-      const user = result.user;
-      // navigate('/courses')
-      console.log(user);
-      // setError('')
+  const saveUser = (name, email) => {
+    const user = { name, email }                
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
     })
-  .catch((error) => {
-    setRegisterError(error.message)
-    console.error(error)});
-    
-  }
+      .then((res) => res.json())
+      .then((data) => {
+        // getUserToken(email);
+       setCreatedUserEmail(email)
+      });
+  };
+
+  // const getUserToken = (email) => {
+  //   fetch(`http://localhost:5000/jwt?email=${email}`)
+  //   .then( res => res.json())
+  //   .then( data => {
+  //     if(data.accesstoken){
+  //  localStorage.setItem('accessToken', data.accesstoken);
+  //       navigate('/')
+  //     }
+  //     console.log(data);
+  //   })
+  // }
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        // navigate('/courses')
+        console.log(user);
+      })
+      .catch((error) => {
+        setRegisterError(error.message);
+        console.error(error);
+      });
+  };
   return (
     <div className="w-50 m-auto mt-5 mb-5 ">
       <div>
@@ -101,16 +140,22 @@ const Register = () => {
           )}
         </div>
 
-        <button type="submit" className="btn btn-primary">
-          Submit
+        <div className="fs-6 text-center">
+          <p>already register? <Link to='/login'>Login</Link></p>
+        </div>
+
+      <div className="">
+      <button type="submit" className="btn btn-primary mb-3 w-100">
+         Register
         </button>
         <div>
-        <button
-              onClick={handleGoogleSignIn}
-              className="btn btn-primary w-full  ps-2 me-2 "
-            >
-              sign in with google
-            </button>
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn btn-primary w-full w-100  ps-2 me-2 "
+          >
+            sign in with google
+          </button>
+      </div>
         </div>
       </form>
     </div>

@@ -1,14 +1,21 @@
 import React, { useContext, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 // import { useLocation, useNavigate } from "react-router";
 import { Authcontext } from "../../Context/AuthProvider";
+import useToken from "../../Hooks/useHooks";
 
 const Login = () => {
   const [logInError, setLogInError] = useState();
-  const { LogIn } = useContext(Authcontext);
-//   const location = useLocation();
-//   const navigate = useNavigate();
-//   const from = location.state?.from?.pathname || '/';
-
+  const { LogIn,signInWithGoogle } = useContext(Authcontext);
+  const [loginUserEmail, setLoginUserEmail] = useState('')
+  const [token] = useToken(loginUserEmail);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state.from.pathname || '/';
+if (token) {
+  navigate( from, {replace: true})
+}
   const handleLogIn = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -20,7 +27,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        // navigate(from,{replace:true});
+        setLoginUserEmail(email)
         form.reset();
         setLogInError('')
    
@@ -28,6 +35,19 @@ const Login = () => {
       .catch((error) => {
         console.log(error);
         setLogInError(error.message);
+      });
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        const user = result.user;
+        navigate('/')
+        console.log(user);
+      })
+      .catch((error) => {
+        setLogInError(error.message);
+        console.error(error);
       });
   };
   return (
@@ -65,9 +85,20 @@ const Login = () => {
           </div>
           <div>{logInError && <p className="text-danger fs-6">{logInError}</p>}</div>
 
-          <button type="submit" className="btn btn-primary">
-            Submit
+        <div>
+          <p>dont have an accoutn? <Link to='/register' >Register</Link></p>
+        </div>
+          <div>
+          <button type="submit" className="btn btn-primary w-100 mb-3">
+            Login
           </button>
+          <button
+            onClick={handleGoogleSignIn}
+            className="btn btn-primary w-full w-100 mb-3 ps-2 me-2 "
+          >
+            sign in with google
+          </button>
+      </div>
         </form>
       </div>
     </div>

@@ -44,6 +44,11 @@ const Navbar = () => {
                   Blog
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/admindashboard">
+                  AdminDashBoard
+                </Link>
+              </li>
 
               {user ? (
                 <>
