@@ -9,11 +9,10 @@ import ErrorPage from "../ErrorPage/ErrorPage";
 import Login from "../Pages/Login/Login";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import Dashboard from "../Pages/Dashboard/Dashboard";
-import DashboardLayout from "../Layout/Root/DashboardLayout/DashboardLayout";
-import AdminDashBoard from "../Pages/AdminDashBoard/AdminDashBoard";
-import MyOrders from "../Pages/MyOrders/MyOrders";
-import AddProducts from "../Pages/AddProducts/AddProducts";
-
+import AdminRoute from "./AdminRoute/AdminRoute";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import DashBoardLayout from "../Layout/DashBoardLayout/DashBoardLayout";
+import DashBoardHeader from "../Pages/DashBoardHeader/DashBoardHeader";
 
 export const router = createBrowserRouter([
   {
@@ -49,41 +48,23 @@ export const router = createBrowserRouter([
         path: "/login",
         element: <Login></Login>,
       },
-      {
-        path: "/dashboard",
-        element:  <Dashboard></Dashboard>
-    
-     },
-      {
-        path: "/myorders",
-        element:  <MyOrders></MyOrders>
-    
-     },
-      {
-        path: "/addproducts",
-        element: <AddProducts></AddProducts>
-    
-     },
-      {
-        path: "/addproducts",
-        element: <AddProducts></AddProducts>
-    
-     },
     ],
   },
-  // {
-  //   path: '/dashboard',
-  //   element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-  //   children: [
-  //     {
-  //       path:'/dashboard',
-  //       element: <AdminDashBoard></AdminDashBoard>
-  //     },
-  //     // {
-  //     //   path:'/admindashboard',
-  //     //   element:<PrivateRoute><AdminDashBoard></AdminDashBoard></PrivateRoute>
-  //     // },
-  //   ]
-  //  },
 
+  {
+    path: "/dashboard",
+    element: <DashBoardLayout></DashBoardLayout>,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+
+      },
+
+      {
+        path:'/dashboard/allusers',
+        element:<AllUsers></AllUsers>
+      }
+    ],
+  },
 ]);

@@ -29,9 +29,11 @@ const Categories = () => {
         </div>
       
         <div className="col-10">
+         
           {products.map((product) => (
             <SingleCategory
               product={product}
+              
               key={product.id}
               setBookProduct={setBookProduct}
             ></SingleCategory>
