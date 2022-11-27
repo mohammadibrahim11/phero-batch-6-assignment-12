@@ -6,7 +6,7 @@ import './Products.css'
 const Products = () => {
     const [products, setProducts] = useState([]);
     useEffect( () => {
-        fetch(`http://localhost:5000/categories`)
+        fetch(`http://localhost:5000/myproduct`)
         .then( res => res.json())
         .then( data => {
             setProducts(data)

@@ -8,8 +8,9 @@ const AllUsers = () => {
         queryFn: async() => {
             const res = await fetch('http://localhost:5000/allusers');
             const data = await res.json();
-            return data;
             console.log(data);
+            return data;
+          
         }
     });
     const handleMakeAdmin = (id) => {

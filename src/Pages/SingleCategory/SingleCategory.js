@@ -4,7 +4,7 @@ import "./SingleCategory.css";
 
 const SingleCategory = ({ product,setBookProduct }) => {
 
-  console.log(product,setBookProduct);
+  // console.log(product,setBookProduct);
   const {
     product_name,
     sellers_name,

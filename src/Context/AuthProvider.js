@@ -17,7 +17,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [SellerAdvertise, setSellerAdvertise] = useState([]);
-  console.log(user);
+  // console.log(user);
   const [loading, setLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
@@ -47,7 +47,7 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, currentUser => {
-      console.log("user observing",currentUser);
+      // console.log("user observing",currentUser);
       setUser(currentUser);
       setLoading(false);
     });

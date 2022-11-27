@@ -2,11 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Context/AuthProvider";
 
-const BookNowModal = ({ bookProduct, setBookProduct }) => {
-  console.log(bookProduct);
+const BookNowModal = ({ bookProduct, setBookProduct,role }) => {
+  console.log(role);
 
   const { user } = useContext(AuthContext);
-  console.log(user);
+ 
   const { product_name, original_price, resale_Price } = bookProduct;
 
   const handleBooking = (event) => {

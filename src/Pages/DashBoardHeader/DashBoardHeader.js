@@ -55,12 +55,7 @@ const DashBoardHeader = () => {
                   Home
                 </Link>
               </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="#">
-                  {" "}
-                  My Orders
-                </Link>
-              </li>
+           
 
               {isAdmin && (
                 <>
@@ -105,11 +100,18 @@ const DashBoardHeader = () => {
               )}
 
               {isBuyer && (
+             <>
                 <li className="nav-item">
                   <Link className="nav-link" to="/dashboard/allBuyers">
                     All Buyers
                   </Link>
                 </li>
+                   <li className="nav-item">
+                <Link className="nav-link" to="#">
+                  {" "}
+                  My Orders
+                </Link>
+              </li></>
               )}
             </ul>
           </div>
