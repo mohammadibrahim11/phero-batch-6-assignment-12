@@ -1,6 +1,6 @@
 import React from 'react';
-import { Outlet } from 'react-router';
-import DashBoardHeader from '../DashBoardHeader/DashBoardHeader';
+// import { Outlet } from 'react-router';
+// import DashBoardHeader from '../DashBoardHeader/DashBoardHeader';
 
 const Dashboard = () => {
   return (

@@ -17,7 +17,7 @@ const SingleCategory = ({ product,setBookProduct }) => {
   } = product;
 
   return (
-    <div>
+  <div>
       <div className="card mb-3" style={{ maxWidth: "740px" }}>
         <div className="row g-0">
           <div className="col-md-4">
@@ -63,7 +63,7 @@ const SingleCategory = ({ product,setBookProduct }) => {
       </div>
 
      
-    </div>
+    </div>  
   );
 };
 

@@ -7,19 +7,19 @@ import "./Categories.css";
 
 const Categories = () => {
   const [bookProduct, setBookProduct] = useState([]);
-  const [role, setRole]= useState([]);
+  // const [role, setRole]= useState([]);
   console.log(bookProduct);
   const categories = useLoaderData();
   const { products } = categories;
 
-  useEffect( ()=>{
-    fetch('http://localhost:5000/allBuyers')
-    .then(res => res.json())
-    .then(data => {
-      setRole(data)
-      console.log(data)
-    })
-  } ,[])
+  // useEffect( ()=>{
+  //   fetch('http://localhost:5000/allBuyers')
+  //   .then(res => res.json())
+  //   .then(data => {
+  //     setRole(data)
+  //     console.log(data)
+  //   })
+  // } ,[])
 
   return (
     <div className="container">

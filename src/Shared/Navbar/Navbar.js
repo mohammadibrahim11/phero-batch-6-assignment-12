@@ -1,14 +1,10 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
-// import useAdmin from "../../Hooks/useAdmin";
-import userSeller from "../../Hooks/userSeller";
 
 const Navbar = () => {
   const { user, LogOut } = useContext(AuthContext);
-  console.log(user)
-  // const [isAdmin] = useAdmin(email);
-  // const [isSeller]=userSeller(user.email);
+  console.log(user);
 
   const handleLogOut = () => {
     LogOut()
@@ -49,13 +45,12 @@ const Navbar = () => {
                   Blog
                 </Link>
               </li>
-       
+
               {/* <li className="nav-item">
             <Link className="nav-link" to="/addproduct">
               Add product
             </Link>
           </li> */}
-           
 
               {user ? (
                 <>
@@ -90,6 +85,8 @@ const Navbar = () => {
                 </div>
               )}
             </ul>
+
+            {user && <p>{user.email}</p>}
           </div>
         </div>
       </nav>

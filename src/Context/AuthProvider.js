@@ -16,6 +16,8 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [SellerAdvertise, setSellerAdvertise] = useState([]);
+  console.log(user);
   const [loading, setLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
@@ -61,6 +63,8 @@ const AuthProvider = ({ children }) => {
     updateUser,
     loading,
     signInWithGoogle,
+    setSellerAdvertise,
+    SellerAdvertise
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

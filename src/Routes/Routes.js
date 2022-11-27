@@ -13,6 +13,10 @@ import AdminRoute from "./AdminRoute/AdminRoute";
 import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import DashBoardLayout from "../Layout/DashBoardLayout/DashBoardLayout";
 import DashBoardHeader from "../Pages/DashBoardHeader/DashBoardHeader";
+import AllSellers from "../Pages/Dashboard/AllSellers/AllSellers";
+import AllBuyers from "../Pages/Dashboard/AllBuyers/AllBuyers";
+import AddProduct from "../Pages/Dashboard/AddProduct/AddProduct";
+import MyProducts from "../Pages/Dashboard/MyProducts/MyProducts";
 
 export const router = createBrowserRouter([
   {
@@ -62,9 +66,25 @@ export const router = createBrowserRouter([
       },
 
       {
-        path:'/dashboard/allusers',
-        element:<AllUsers></AllUsers>
-      }
+        path:'/dashboard/allUsers',
+        element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
+      },
+      {
+        path:'/dashboard/allSellers',
+        element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
+      },
+      {
+        path:'/dashboard/addproduct',
+        element:<AddProduct></AddProduct>
+      },
+      {
+        path:'/dashboard/myproducts',
+        element:<MyProducts></MyProducts>
+      },
+      {
+        path:'/dashboard/allBuyers',
+        element:<AllBuyers></AllBuyers>
+      },
     ],
   },
 ]);
