@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 
-const MyProduct = ({sellerProduct,handleSellerProductDelete,}) => {
-   const {setSellerAdvertise} = useContext(AuthContext);
+const MyProduct = ({sellerProduct,handleSellerProductDelete,handleSellerProductStatus}) => {
+  //  const {setSellerAdvertise} = useContext(AuthContext);
     // console.log(sellerProduct);
     const {productName,price,condition,location,purchase,phone,category,description,photoURL,_id}=sellerProduct;
 
-
+     
   
 
 
@@ -52,7 +52,7 @@ const MyProduct = ({sellerProduct,handleSellerProductDelete,}) => {
                 delete
               </button>
               <button
-              onClick={()=>setSellerAdvertise(sellerProduct)} 
+              onClick={()=>handleSellerProductStatus(_id)} 
                 type="button"
                 class="btn btn-danger"
                

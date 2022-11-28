@@ -4,6 +4,7 @@ import MyProduct from "../MyProduct/MyProduct";
 
 const MyProducts = () => {
   const [sellerProducts, setSellerProducts] = useState([]);
+  
 
   useEffect(() => {
     fetch("http://localhost:5000/myproduct")
@@ -32,6 +33,21 @@ const MyProducts = () => {
     }
   };
 
+          
+
+  const handleSellerProductStatus =(id)=> {
+    fetch(`http://localhost:5000/myproduct/${id}`,{
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({status:true}),
+
+
+    })
+
+  }
+
   return (
     <div>
      
@@ -49,6 +65,7 @@ const MyProducts = () => {
           sellerProduct={sellerProduct}
           key={sellerProduct._id}
           handleSellerProductDelete={handleSellerProductDelete}
+          handleSellerProductStatus={handleSellerProductStatus}
         ></MyProduct>
       ))}
     </div>
